@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Update · 最后 72 小时 — CYBERBOARD R6</title>
+<style>
+  :root{
+    --bg:#07090c; --bg2:#0b0f14; --line:#232a31;
+    --cyan:#7ee7f0; --white:#edf1f3; --dim:#9aa4ac; --faint:#5d666e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--white);
+    font-family:"PingFang SC","Hiragino Sans GB","Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 40px;}
+  .en{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:.06em;}
+  .dim{color:var(--dim);} .faint{color:var(--faint);} .cyan{color:var(--cyan);}
+
+  /* 顶栏 */
+  header{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:28px 40px;border-bottom:1px solid var(--line);
+  }
+  .brand{font-weight:600;font-size:15px;letter-spacing:.14em;}
+  .brand small{display:block;font-weight:400;font-size:10px;color:var(--faint);letter-spacing:.3em;margin-top:2px;}
+  .update-tag{font-size:11px;color:var(--cyan);border:1px solid var(--line);padding:6px 16px;letter-spacing:.25em;}
+
+  /* Hero：倒计时 */
+  .hero{padding:96px 40px 80px;text-align:center;
+    background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(30,90,100,.25), transparent 70%);}
+  .hero .kicker{font-size:13px;letter-spacing:.5em;color:var(--cyan);}
+  .hero h1{font-size:64px;font-weight:600;margin-top:24px;letter-spacing:.04em;}
+  .hero h1 span{font-size:22px;color:var(--dim);font-weight:400;letter-spacing:.2em;display:block;margin-top:8px;}
+  .hero .date{font-size:14px;color:var(--dim);margin-top:20px;}
+  .hero .date b{color:var(--white);font-weight:600;}
+  .cta{display:inline-block;margin-top:44px;padding:16px 56px;border:1px solid var(--cyan);
+    color:var(--cyan);font-size:15px;letter-spacing:.2em;text-decoration:none;}
+  .cta-sub{font-size:11px;color:var(--faint);margin-top:14px;letter-spacing:.08em;}
+
+  section{padding:80px 0;border-top:1px solid var(--line);}
+  .sec-tag{font-size:12px;letter-spacing:.4em;color:var(--cyan);margin-bottom:16px;}
+  .sec-title{font-size:30px;font-weight:600;line-height:1.4;}
+  .sec-body{margin-top:24px;font-size:15px;color:var(--dim);}
+  .sec-body p{margin-bottom:12px;}
+  .sec-body strong{color:var(--white);font-weight:600;}
+
+  /* 倒计时条 */
+  .countdown{display:flex;justify-content:center;gap:16px;margin-top:40px;}
+  .cd{border:1px solid var(--line);background:var(--bg2);padding:22px 0;width:130px;text-align:center;}
+  .cd b{display:block;font-size:40px;font-weight:600;color:var(--cyan);}
+  .cd span{font-size:11px;color:var(--faint);letter-spacing:.3em;}
+
+  /* 回顾：30 天证明了什么 */
+  .recap{margin-top:48px;}
+  .recap .r{display:flex;gap:24px;padding:22px 0;border-top:1px solid var(--line);align-items:baseline;}
+  .recap .r:last-child{border-bottom:1px solid var(--line);}
+  .recap .d{font-size:12px;color:var(--cyan);letter-spacing:.2em;min-width:72px;}
+  .recap .t{font-size:15px;font-weight:600;min-width:220px;}
+  .recap .e{font-size:13px;color:var(--dim);flex:1;}
+
+  /* 交付时间线 */
+  .timeline{margin-top:56px;position:relative;}
+  .timeline::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:var(--line);}
+  .tl{position:relative;padding:0 0 36px 44px;}
+  .tl::before{content:"";position:absolute;left:0;top:6px;width:15px;height:15px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--cyan);}
+  .tl.done::before{background:var(--cyan);box-shadow:0 0 14px rgba(126,231,240,.45);}
+  .tl .when{font-size:12px;color:var(--cyan);letter-spacing:.2em;}
+  .tl h4{font-size:17px;font-weight:600;margin-top:4px;}
+  .tl p{font-size:13px;color:var(--dim);margin-top:4px;}
+  .tl .state{font-size:11px;color:var(--faint);border:1px solid var(--line);padding:2px 10px;margin-left:10px;}
+  .tl.done .state{color:var(--cyan);border-color:var(--cyan);}
+
+  /* 支持承诺 */
+  .promise{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
+  .promise .p{border:1px solid var(--line);background:var(--bg2);padding:26px;}
+  .promise .p h4{font-size:15px;color:var(--cyan);font-weight:600;margin-bottom:10px;}
+  .promise .p p{font-size:13px;color:var(--dim);}
+
+  /* 下一步价值卡片 */
+  .next{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px;}
+  .next .n{border:1px solid var(--line);background:var(--bg2);padding:30px;}
+  .next .n .no{font-size:11px;color:var(--cyan);letter-spacing:.3em;}
+  .next .n h4{font-size:17px;font-weight:600;margin:10px 0 8px;}
+  .next .n p{font-size:13px;color:var(--dim);}
+
+  footer{padding:72px 40px 56px;text-align:center;border-top:1px solid var(--line);}
+  footer .big{font-size:26px;font-weight:600;}
+  footer .note{margin-top:36px;font-size:11px;color:#434c53;line-height:2;max-width:620px;margin-left:auto;margin-right:auto;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand en">CYBERBOARD R6<small>INVISIBLE AI IO</small></div>
+  <div class="update-tag en">UPDATE · D+27</div>
+</header>
+
+<!-- Hero：收官倒计时 -->
+<div class="hero">
+  <div class="wrap">
+    <p class="kicker en">FINAL CALL</p>
+    <h1>最后 72 小时<span class="en">THE CAMPAIGN ENDS SOON</span></h1>
+    <p class="date">众筹将于 <b>X 月 X 日 23:59（PDT）</b>结束<br>创始档与早鸟价将随众筹结束永久关闭</p>
+    <div class="countdown">
+      <div class="cd"><b class="en">03</b><span class="en">DAYS</span></div>
+      <div class="cd"><b class="en">00</b><span class="en">HOURS</span></div>
+      <div class="cd"><b class="en">00</b><span class="en">MINS</span></div>
+    </div>
+    <a class="cta en" href="#">BACK THIS PROJECT</a>
+    <p class="cta-sub">还在犹豫？这一页是我们想让你在结束前知道的全部事实。</p>
+  </div>
+</div>
+
+<!-- 30 天回顾：证据收口 -->
+<section>
+  <div class="wrap">
+    <p class="sec-tag en">PROOF, NOT PROMISES</p>
+    <h3 class="sec-title">这 30 天，我们没有讲第二遍故事，<br>只做了一件事：交出证据。</h3>
+    <div class="recap">
+      <div class="r"><span class="d en">D DAY</span><span class="t">Reveal 与工程机实录</span><span class="e">第一把学会聆听的键盘——同日放出工程机实拍 Demo，演示任务真实可复现。</span></div>
+      <div class="r"><span class="d en">D+1~10</span><span class="t">三卖点与高频答疑</span><span class="e">边说边看说完即写入 / 按住说话松开执行 / 边打字边被听见，全部实拍演示。</span></div>
+      <div class="r"><span class="d en">D+11~18</span><span class="t">工艺、交付与坦诚</span><span class="e">CNC / 阳极 / 装配一致性图集，产线与质检可见化；试产复测计划、订阅制、能力边界全部公开。</span></div>
+      <div class="r"><span class="d en">D+19~26</span><span class="t">口碑与第三方验证</span><span class="e">内测口碑混剪、评测合集、真实用户实拍切片——证据全部可回溯。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 交付时间线 -->
+<section>
+  <div class="wrap">
+    <p class="sec-tag en">DELIVERY TIMELINE</p>
+    <h3 class="sec-title">结束之后发生什么：<br>从众筹到交付的每一步</h3>
+    <div class="timeline">
+      <div class="tl done"><span class="when en">已完成</span><h4>工程机与试产复测<span class="state en">DONE</span></h4><p>T0 工程机全流程演示可复现；写入速度 / 识别成功率 / 蓝牙稳定性复测计划已公开。</p></div>
+      <div class="tl"><span class="when en">X 月 · 众筹结束后</span><h4>量产启动</h4><p>物料锁定 → 产线排期 → 首批量产。每个里程碑以 Update 同步。</p></div>
+      <div class="tl"><span class="when en">X 月</span><h4>质检与一致性抽检</h4><p>装配一致性抽检、质检视频公开——延续「交付可见化」的做法。</p></div>
+      <div class="tl"><span class="when en">X 月</span><h4>包装与国际物流</h4><p>分批发货，物流单号逐一同步至 Backer 邮箱与 Update。</p></div>
+      <div class="tl"><span class="when en">X 月 · 承诺</span><h4>发货承诺</h4><p>发货承诺以发布会公布口径为准（日历日见置顶评论 / Update）。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 支持承诺 -->
+<section>
+  <div class="wrap">
+    <p class="sec-tag en">OUR COMMITMENTS</p>
+    <h3 class="sec-title">支持我们之后，你拥有什么</h3>
+    <div class="promise">
+      <div class="p"><h4>交付承诺</h4><p>交付时间线全公开，里程碑 Update 不间断；如延期，第一时间说明原因与新节点。</p></div>
+      <div class="p"><h4>创始档长期权益</h4><p>创始档支持者享有长期权益（官宣细则见早鸟利好 Update），以对冲订阅制争议。</p></div>
+      <div class="p"><h4>透明边界</h4><p>它不是通用 Agent；HID 仅支持键盘指令。我们说到哪，边界就画到哪。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 下一步价值卡片 -->
+<section>
+  <div class="wrap">
+    <p class="sec-tag en">WHAT'S NEXT</p>
+    <h3 class="sec-title">错过了这一次，<br>怎么继续获得价值</h3>
+    <div class="next">
+      <div class="n"><p class="no en">CARD 01</p><h4>Late Pledge 即将开放</h4><p>众筹结束后将开启 Late Pledge 通道（价格与权益不同于众筹档，细则见 D+30 收官 Update）。</p></div>
+      <div class="n"><p class="no en">CARD 02</p><h4>订阅 Update，不错过里程碑</h4><p>关注本项目即可持续收到量产 / 质检 / 物流的里程碑 Update，所有证据可回溯。</p></div>
+      <div class="n"><p class="no en">CARD 03</p><h4>加入 Discord 社区</h4><p>与内测用户和 AM 团队直接对话，众测信息与 FAQ 第一时间在社区同步。</p></div>
+      <div class="n"><p class="no en">CARD 04</p><h4>国内发售协同</h4><p>国内现货节奏另行公布，与海外众筹不同步、不冲突，敬请关注官方渠道。</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="big">言出，法随。<span class="dim">——最后 72 小时，交给你决定。</span></p>
+  <p class="sol-en en faint" style="margin-top:10px;font-style:italic;">Say it. So it is.</p>
+  <div style="margin-top:28px;"><a class="cta en" href="#">BACK THIS PROJECT</a></div>
+  <p class="note">
+    本页为【37】收官提醒 Update（D+27）排版稿 v1 · 依据《AM 鼠标 30 天海外 KS 发布节奏》D+27 最佳实践：
+    收官提醒 + 下一步价值卡片（交付时间线 / 流程 / 支持承诺 / 如何继续获得价值）。
+    文案遵守红线自查表；结束时间、发货承诺日历日、Late Pledge 细则为待决项，上线前需以官宣口径替换占位。
+  </p>
+  <p class="note en" style="margin-top:12px;letter-spacing:.3em;">ANGRY MIAO · CYBERBOARD R6 · INVISIBLE AI IO</p>
+</footer>
+
+</body>
+</html>

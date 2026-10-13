@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CB R6 发布会 Keynote · 全场 22 屏</title>
+<style>
+  /* ============ frame.md v3 tokens（暖深 · 零蓝调） ============ */
+  :root{
+    --bg:#171512; --line:#2e2b25;
+    --ink:#f0eee6; --clay:#d97757; --dim:#b0aea5; --faint:#6e6a60;
+    --ease:cubic-bezier(.22,.61,.36,1);
+    --frag-dur:.6s;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;background:#0e0d0b;overflow:hidden;}
+  body{font-family:"PingFang SC","Hiragino Sans GB","Helvetica Neue",Helvetica,Arial,sans-serif;}
+
+  #viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+  #stage{width:1920px;height:1080px;position:relative;flex:none;
+    background:var(--bg);transform-origin:center center;overflow:hidden;}
+
+  .slide{position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;
+    padding:0 120px;visibility:hidden;}
+  .slide.active{visibility:visible;}
+
+  .frag{opacity:0;transform:translateY(24px);
+    transition:opacity var(--frag-dur) var(--ease),transform var(--frag-dur) var(--ease);}
+  .frag.on{opacity:1;transform:translateY(0);}
+
+  .en{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+  .serif{font-family:Georgia,"Times New Roman",serif;font-style:italic;}
+  .kicker{font-size:22px;letter-spacing:.5em;color:var(--faint);margin-bottom:56px;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;text-indent:.5em;}
+
+  /* ============ S1 裸问题 ============ */
+  #s1 .q-cn{font-size:88px;font-weight:600;color:var(--ink);line-height:1.5;letter-spacing:.02em;}
+  #s1 .q-en{margin-top:36px;font-size:28px;color:var(--dim);letter-spacing:.04em;}
+
+  /* ============ S1A 搬运三句（独立一屏，逐句亮起） ============ */
+  #s1a .labor p{font-size:44px;color:var(--dim);line-height:2.2;font-weight:400;}
+  #s1a .labor p em{font-style:normal;color:var(--ink);}
+
+  /* ============ S2 Pivot ============ */
+  #s2 .p-cn{font-size:56px;font-weight:500;color:var(--dim);line-height:1.8;}
+  #s2 .p-cn strong{color:var(--ink);font-weight:600;}
+  #s2 .p-en{margin-top:40px;font-size:24px;color:var(--faint);letter-spacing:.04em;}
+  #s2 .hairline{width:64px;height:1px;background:var(--line);margin-bottom:64px;}
+
+  /* ============ S3 Reveal ============ */
+  #s3{background:radial-gradient(ellipse 70% 45% at 50% 0%, rgba(217,119,87,.12), transparent 70%);}
+  #led{position:absolute;inset:0;pointer-events:none;}
+  #led i{position:absolute;width:5px;height:5px;border-radius:50%;
+    background:var(--line);opacity:.6;transition:all 1.2s var(--ease);}
+  #s3.awake #led i.lit{background:var(--clay);opacity:1;
+    box-shadow:0 0 14px 2px rgba(217,119,87,.45);}
+  #s3 .brand{font-size:72px;font-weight:600;letter-spacing:.28em;color:var(--ink);text-indent:.28em;}
+  #s3 .sol{margin-top:40px;font-size:96px;font-weight:600;color:var(--clay);letter-spacing:.04em;}
+  #s3 .sol-en{margin-top:36px;font-size:28px;color:var(--dim);letter-spacing:.04em;}
+  #s3 .coming{position:absolute;bottom:96px;font-size:20px;letter-spacing:.5em;
+    color:var(--faint);text-indent:.5em;}
+
+  /* ============ 全幅产品美图（S3A / S16 共用 .photo） ============ */
+  .photo{padding:0;}
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .photo .shade{position:absolute;left:0;right:0;bottom:0;height:300px;
+    background:linear-gradient(transparent,rgba(14,13,11,.8));}
+  .photo .cap{position:absolute;left:96px;bottom:72px;font-size:20px;letter-spacing:.45em;
+    color:var(--ink);text-indent:.45em;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+
+  /* ============ S4 八年之约（国内场限定） ============ */
+  #s4 .years{font-size:40px;color:var(--faint);letter-spacing:.3em;margin-bottom:56px;}
+  #s4 .years b{color:var(--clay);font-weight:600;}
+  #s4 .tnt{font-size:52px;font-weight:500;color:var(--ink);line-height:1.9;max-width:1300px;}
+  #s4 .tnt-note{margin-top:48px;font-size:22px;color:var(--faint);letter-spacing:.1em;}
+
+  /* ============ S5 键盘本体 ============ */
+  #s5 .title{font-size:64px;font-weight:600;color:var(--ink);margin-bottom:64px;}
+  #s5 .spec{font-size:36px;color:var(--dim);line-height:2.2;font-weight:400;}
+  #s5 .spec b{color:var(--ink);font-weight:600;}
+
+  /* ============ S6 三合一（Jobs 时刻） ============ */
+  #s6 .prod{font-size:56px;font-weight:500;color:var(--dim);line-height:1.9;}
+  #s6 .prod b{color:var(--ink);font-weight:600;}
+  #s6 .notthree{margin-top:80px;font-size:44px;color:var(--dim);font-weight:400;}
+
+  /* ============ S6A 三合一收束（独立屏） ============ */
+  #s6a .one{font-size:110px;font-weight:600;color:var(--clay);letter-spacing:.06em;line-height:1.4;}
+  #s6a .one-en{margin-top:36px;font-size:26px;color:var(--faint);letter-spacing:.06em;}
+
+  /* ============ S6B 场景 Agent ============ */
+  #s6b .title{font-size:56px;font-weight:600;color:var(--ink);margin-bottom:40px;}
+  #s6b .apps{display:flex;gap:28px;margin-top:72px;}
+  #s6b .app{border:1px solid var(--line);padding:28px 36px;min-width:300px;}
+  #s6b .app .from{font-size:24px;color:var(--faint);letter-spacing:.1em;margin-bottom:12px;}
+  #s6b .app .to{font-size:28px;color:var(--ink);font-weight:600;}
+  #s6b .app .to b{color:var(--clay);}
+  #s6b .close{margin-top:64px;font-size:34px;color:var(--ink);font-weight:500;}
+  #s6b .note{margin-top:48px;font-size:22px;color:var(--faint);letter-spacing:.06em;line-height:1.9;}
+  #s6b .note b{color:var(--dim);font-weight:600;}
+
+  /* ============ S8/S9/S10 演示（现场演示） ============ */
+  .demo .title{font-size:64px;font-weight:600;color:var(--ink);margin-bottom:16px;}
+  .demo .sub{font-size:26px;color:var(--dim);letter-spacing:.04em;}
+  .demo .live{position:absolute;bottom:96px;font-size:20px;letter-spacing:.5em;
+    color:var(--faint);text-indent:.5em;}
+
+  /* ============ S11 打字音 ============ */
+  #s11 .l1{font-size:56px;color:var(--dim);font-weight:400;}
+  #s11 .l2{font-size:120px;color:var(--ink);font-weight:600;margin-top:32px;}
+  #s11 .l3{font-size:24px;color:var(--faint);margin-top:56px;letter-spacing:.3em;}
+
+  /* ============ S12 桌面减法 ============ */
+  #s12 .title{font-size:56px;font-weight:600;color:var(--ink);margin-bottom:80px;}
+  #s12 .row{display:flex;align-items:center;gap:32px;}
+  #s12 .item{border:1px solid var(--line);padding:36px 48px;position:relative;
+    color:var(--faint);font-size:30px;}
+  #s12 .item::after{content:"已退休";position:absolute;top:-16px;left:50%;transform:translateX(-50%);
+    background:var(--bg);color:var(--clay);font-size:16px;padding:4px 16px;
+    letter-spacing:.25em;border:1px solid var(--line);}
+  #s12 .arr{font-size:40px;color:var(--faint);}
+  #s12 .r6{border-color:var(--clay);color:var(--ink);font-weight:600;letter-spacing:.12em;}
+  #s12 .r6::after{content:none;}
+
+  /* ============ S13 心流 ============ */
+  #s13 .l1{font-size:52px;color:var(--ink);line-height:1.9;font-weight:500;}
+  #s13 .l2{font-size:36px;color:var(--dim);margin-top:40px;line-height:1.9;}
+  #s13 .flow{font-size:140px;color:var(--clay);font-weight:600;margin-top:48px;letter-spacing:.2em;text-indent:.2em;}
+
+  /* ============ S14 编年史 ============ */
+  #s14 .title{font-size:52px;font-weight:600;color:var(--ink);margin-bottom:100px;}
+  #s14 .chrono{display:flex;justify-content:space-between;width:100%;position:relative;}
+  #s14 .chrono::before{content:"";position:absolute;top:9px;left:60px;right:60px;height:1px;background:var(--line);}
+  #s14 .node{width:22%;position:relative;padding-top:56px;text-align:left;}
+  #s14 .node::before{content:"";position:absolute;top:0;left:0;width:19px;height:19px;
+    border-radius:50%;background:var(--bg);border:2px solid var(--faint);}
+  #s14 .node.now::before{border-color:var(--clay);background:var(--clay);
+    box-shadow:0 0 20px rgba(217,119,87,.55);}
+  #s14 .year{font-size:48px;font-weight:600;color:var(--dim);}
+  #s14 .node.now .year{color:var(--clay);}
+  #s14 .what{font-size:24px;color:var(--dim);margin-top:16px;line-height:1.7;}
+  #s14 .node.now .what{color:var(--ink);}
+
+  /* ============ S15 Invisible AI IO ============ */
+  #s15 .big{font-size:130px;font-weight:600;color:var(--ink);letter-spacing:.08em;}
+  #s15 .big span{color:var(--clay);}
+  #s15 .l2{font-size:40px;color:var(--dim);margin-top:64px;line-height:1.9;}
+
+  /* ============ S16 幻视 CB（全幅美图，样式见 .photo） ============ */
+
+  /* ============ S17 坦诚三件套 ============ */
+  #s17 .title{font-size:56px;font-weight:600;color:var(--ink);margin-bottom:80px;}
+  #s17 .cols{display:flex;gap:36px;width:100%;}
+  #s17 .col{flex:1;border:1px solid var(--line);padding:48px 40px;text-align:left;}
+  #s17 .col h4{font-size:28px;color:var(--clay);font-weight:600;margin-bottom:20px;}
+  #s17 .col p{font-size:24px;color:var(--dim);line-height:1.9;}
+
+  /* ============ S18 价格与承诺（B-roll 承接） ============ */
+  #s18 .title{font-size:64px;font-weight:600;color:var(--ink);}
+  #s18 .ship{margin-top:48px;font-size:26px;color:var(--dim);letter-spacing:.1em;}
+
+  /* ============ S19 收尾 ============ */
+  #s19{background:radial-gradient(ellipse 70% 45% at 50% 0%, rgba(217,119,87,.12), transparent 70%);}
+  #s19 .big{font-size:150px;font-weight:600;color:var(--clay);letter-spacing:.1em;text-indent:.1em;}
+  #s19 .sub{font-size:44px;color:var(--ink);margin-top:32px;font-weight:500;}
+  #s19 .en2{font-size:28px;color:var(--dim);margin-top:40px;letter-spacing:.06em;}
+  #s19 .tail{margin-top:80px;font-size:22px;letter-spacing:.5em;color:var(--faint);text-indent:.5em;}
+
+  /* ============ 转场 & 静帧 ============ */
+  #wipe{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;
+    transition:opacity .25s linear;z-index:40;}
+  #wipe.on{opacity:1;}
+
+  @media (prefers-reduced-motion:reduce){
+    .frag{transition:none;} #wipe{transition:none;} #led i{transition:none;}
+  }
+  .still .frag,.still #led i,.still #wipe{transition:none!important;}
+</style>
+</head>
+<body>
+<div id="viewport">
+  <div id="stage">
+
+    <!-- S1 · ACT 1 裸问题 -->
+    <section class="slide" id="s1">
+      <h1 class="q-cn frag" data-f="1">AI 已经可以聆听你。<br>但为什么，今天的键盘还不行？</h1>
+      <p class="q-en serif frag" data-f="2">AI is listening to you. So why isn't your keyboard?</p>
+    </section>
+
+    <!-- S1A · ACT 1 搬运三句（一屏，逐句亮起） -->
+    <section class="slide" id="s1a">
+      <div class="labor">
+        <p class="frag" data-f="1">你以为你在思考，其实你在搬运——<em>这是这个时代最隐蔽的体力劳动。</em></p>
+        <p class="frag" data-f="2">你以 1873 年的速度输入，和 2026 年的 AI 对话？</p>
+        <p class="frag" data-f="3">思考是你的工作，<em>搬运上下文不是。</em></p>
+      </div>
+    </section>
+
+    <!-- S2 · ACT 2 Pivot -->
+    <section class="slide" id="s2">
+      <div class="hairline frag" data-f="1"></div>
+      <h2 class="p-cn frag" data-f="2">因为到今天为止，<strong>还没有一把键盘，</strong></h2>
+      <h2 class="p-cn frag" data-f="3"><strong>为 AI 时代而生。</strong></h2>
+      <p class="p-en serif frag" data-f="4">Because no keyboard has ever been built for the AI era.</p>
+    </section>
+
+    <!-- S3 · ACT 2 Reveal -->
+    <section class="slide" id="s3">
+      <div id="led"></div>
+      <h1 class="brand en frag" data-f="1">CYBERBOARD R6</h1>
+      <h2 class="sol frag" data-f="2">北半球第二把学会聆听的键盘</h2>
+      <p class="sol-en serif frag" data-f="3">The second-best listening keyboard in the Northern Hemisphere.</p>
+      <p class="coming en frag" data-f="4">INVISIBLE AI IO · COMING</p>
+    </section>
+
+    <!-- S3A · ACT 2 产品美图（全幅） -->
+    <section class="slide photo" id="s3a">
+      <img src="assets/cyberboard_r4_03.jpg" alt="CYBERBOARD R6 产品美图">
+      <div class="shade"></div>
+      <p class="cap frag" data-f="1">CYBERBOARD R6</p>
+    </section>
+
+    <!-- S4 · ACT 2 八年之约（国内场限定） -->
+    <section class="slide" id="s4">
+      <p class="kicker">ACT 2 · 八年之约</p>
+      <p class="years en frag" data-f="1">2018 <b>→</b> 2026</p>
+      <h2 class="tnt frag" data-f="2">2018 年，罗老师在鸟巢许下言出法随的愿。<br>八年后，我们做出来了。</h2>
+      <p class="tnt-note frag" data-f="3">致敬先驱 · 国内场限定</p>
+    </section>
+
+    <!-- S5 · ACT 3 先立住键盘 -->
+    <section class="slide" id="s5">
+      <p class="kicker">ACT 3 · SOLUTION 第一层</p>
+      <h2 class="title frag" data-f="1">在谈 AI 之前，先谈键盘。</h2>
+      <p class="spec frag" data-f="2"><b>200 颗 LED 矩阵</b> · 桌面身份的像素语言</p>
+      <p class="spec frag" data-f="3"><b>6063 CNC 铝合金</b> · 一体化机身</p>
+      <p class="spec frag" data-f="4"><b>多彩阳极工艺</b> · 幻视机身的色彩语言</p>
+      <p class="spec frag" data-f="5"><b>三段式 Leaf Spring</b> · POM 定位板多层声学</p>
+      <p class="spec frag" data-f="6"><b>冰银轴 Pro V3</b></p>
+    </section>
+
+    <!-- S6 · ACT 4 第一层：三合一（Jobs 时刻） -->
+    <section class="slide" id="s6">
+      <p class="kicker">ACT 4 · 它到底是什么</p>
+      <p class="prod frag" data-f="1">一把<b>客制化键盘</b>。</p>
+      <p class="prod frag" data-f="2">一个<b>桌面阵列 AI 麦克风</b>。</p>
+      <p class="prod frag" data-f="3">一个<b>桌面蓝牙音响</b>。</p>
+      <p class="notthree frag" data-f="4">今天，我们不发布三个产品。</p>
+    </section>
+
+    <!-- S6A · ACT 4 三合一收束（独立屏） -->
+    <section class="slide" id="s6a">
+      <p class="one frag" data-f="1">它们三个，在一把键盘里。</p>
+      <p class="one-en serif frag" data-f="1">Not three products. One keyboard.</p>
+    </section>
+
+    <!-- S6B · ACT 4 第二层：场景 Agent -->
+    <section class="slide" id="s6b">
+      <p class="kicker">ACT 4 · 第二层 · 会看场合的 AGENT</p>
+      <h2 class="title frag" data-f="1">AM Agent 帮你切换硬件的 Profile。</h2>
+      <div class="apps frag" data-f="2">
+        <div class="app"><p class="from">写代码时</p><p class="to">→ <b>开发</b> profile</p></div>
+        <div class="app"><p class="from">剪视频时</p><p class="to">→ <b>剪辑</b> profile</p></div>
+        <div class="app"><p class="from">打游戏时</p><p class="to">→ <b>游戏</b> profile</p></div>
+      </div>
+      <p class="close frag" data-f="3">你换 App，它换状态。</p>
+      <p class="note frag" data-f="4">目前支持：<b>怒喵鼠标 · 怒喵磁轴键盘 BE745</b><br>CYBERBOARD R6 也可随应用切换——但 R6 没有 profile。</p>
+    </section>
+
+    <!-- S8 · ACT 5 SP1 语音输入演示 -->
+    <section class="slide demo" id="s8">
+      <p class="kicker">ACT 5 · 演示 SP1</p>
+      <h2 class="title frag" data-f="1">边说边看，说完即写入。</h2>
+      <p class="sub frag" data-f="1">十分钟的完整思考，不再被压缩成二十分钟的敲击</p>
+      <p class="live frag" data-f="2">现场演示</p>
+    </section>
+
+    <!-- S9 · ACT 6 SP2 语音执行演示 -->
+    <section class="slide demo" id="s9">
+      <p class="kicker">ACT 6 · 演示 SP2</p>
+      <h2 class="title frag" data-f="1">按住说话，松开执行。</h2>
+      <p class="sub serif frag" data-f="1">Press. Speak. Done.</p>
+      <p class="live frag" data-f="2">现场演示</p>
+    </section>
+
+    <!-- S10 · ACT 7 SP3 降噪实测 -->
+    <section class="slide demo" id="s10">
+      <p class="kicker">ACT 7 · 演示 SP3</p>
+      <h2 class="title frag" data-f="1">边打字，边被听见。</h2>
+      <p class="sub frag" data-f="1">AI 阵列麦 + 音频 DSP，为机械键盘的敲击环境而生</p>
+      <p class="live frag" data-f="2">现场演示</p>
+    </section>
+
+    <!-- S11 · ACT 7 打字音固定环节 -->
+    <section class="slide" id="s11">
+      <p class="l1 frag" data-f="1">这一段没有台词。</p>
+      <p class="l2 frag" data-f="2">听就好。</p>
+      <p class="l3 en frag" data-f="3">冰银轴 PRO V3 · 打字音 30 秒</p>
+    </section>
+
+    <!-- S12 · ACT 8 桌面减法 -->
+    <section class="slide" id="s12">
+      <p class="kicker">ACT 8 · LESS IS MORE</p>
+      <h2 class="title frag" data-f="1">桌面上的最后一件设备，<br>因为它其实是一次减法。</h2>
+      <div class="row frag" data-f="2">
+        <div class="item">独立麦克风</div>
+        <div class="item">桌面音箱</div>
+        <div class="item">头戴耳机</div>
+      </div>
+      <div class="row frag" data-f="3" style="margin-top:48px;">
+        <div class="arr">↓</div>
+      </div>
+      <div class="row frag" data-f="4" style="margin-top:48px;">
+        <div class="item r6">CYBERBOARD R6</div>
+      </div>
+    </section>
+
+    <!-- S13 · ACT 8 心流 -->
+    <section class="slide" id="s13">
+      <p class="l1 frag" data-f="1">你说，它听。你说完，它已经在屏幕上。</p>
+      <p class="l2 frag" data-f="2">你的注意力第一次完整地属于思考本身——</p>
+      <p class="flow frag" data-f="3">心流</p>
+    </section>
+
+    <!-- S14 · ACT 9 编年史 -->
+    <section class="slide" id="s14">
+      <p class="kicker">ACT 9 · 键盘的第三次觉醒</p>
+      <h2 class="title frag" data-f="1">每个计算时代，都有定义它的输入设备。</h2>
+      <div class="chrono">
+        <div class="node frag" data-f="2"><div class="year en">1873</div><div class="what">打字机配列确立<br>QWERTY 沿用至今</div></div>
+        <div class="node frag" data-f="3"><div class="year en">1964</div><div class="what">鼠标发明<br>图形界面的输入起点</div></div>
+        <div class="node frag" data-f="4"><div class="year en">2007</div><div class="what">移动时代<br>触屏成为原生交互</div></div>
+        <div class="node now frag" data-f="5"><div class="year en">2026</div><div class="what">对话成为 AI 原生交互<br>键盘第一次学会聆听</div></div>
+      </div>
+    </section>
+
+    <!-- S15 · ACT 9 概念升华 -->
+    <section class="slide" id="s15">
+      <h1 class="big en frag" data-f="1">INVISIBLE <span>AI IO</span></h1>
+      <p class="l2 frag" data-f="2">交互已经换代，设备还没有。<br>今天，设备追上来了。</p>
+    </section>
+
+    <!-- S16 · ACT 10 幻视 CB 首发（全幅美图） -->
+    <section class="slide photo" id="s16">
+      <img src="assets/DSC00294.jpg" alt="幻视 CB 产品美图">
+      <div class="shade"></div>
+      <p class="cap frag" data-f="1">幻视 CB · 首发</p>
+    </section>
+
+    <!-- S17 · ACT 11 坦诚三件套 -->
+    <section class="slide" id="s17">
+      <p class="kicker">ACT 11 · FULL DISCLOSURE</p>
+      <h2 class="title frag" data-f="1">三件事，我们主动说清楚。</h2>
+      <div class="cols">
+        <div class="col frag" data-f="2"><h4>软件开源，持续迭代</h4><p>内测用户反馈很好，Vibe Coding 也帮了大忙——但说实话，软件需要慢慢完善。它会在你的参与里，越变越好。</p></div>
+        <div class="col frag" data-f="3"><h4>订阅制显著披露</h4><p>AI 功能为订阅制，停订后 AI 功能不可用。这句话放在页面最显眼的位置；创始档用户享有长期权益。</p></div>
+        <div class="col frag" data-f="4"><h4>能力边界明示</h4><p>不是通用 Agent，HID 不支持鼠标。只在你说「听」的时候，它倾听。</p></div>
+      </div>
+    </section>
+
+    <!-- S18 · ACT 12 价格与承诺（B-roll 承接） -->
+    <section class="slide" id="s18">
+      <p class="kicker">ACT 12 · 收尾</p>
+      <h2 class="title frag" data-f="1">价格与档位</h2>
+      <p class="ship frag" data-f="2">预定利好 · 发货承诺（日历日待决）</p>
+    </section>
+
+    <!-- S19 · 终屏 -->
+    <section class="slide" id="s19">
+      <h1 class="big frag" data-f="1">言出，法随。</h1>
+      <p class="sub frag" data-f="2">你说的，就是它办的。</p>
+      <p class="en2 serif frag" data-f="3">Say it. So it is.</p>
+      <p class="tail en frag" data-f="4">CYBERBOARD R6 · INVISIBLE AI IO</p>
+    </section>
+
+    <div id="wipe"></div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var SLIDES = ["s1","s1a","s2","s3","s3a","s4","s5","s6","s6a","s6b","s8","s9","s10","s11","s12","s13","s14","s15","s16","s17","s18","s19"];
+  var MAXF = {s1:2,s1a:3,s2:4,s3:4,s3a:1,s4:3,s5:6,s6:4,s6a:1,s6b:4,s8:2,s9:2,s10:2,s11:3,s12:4,s13:3,s14:5,s15:2,s16:1,s17:4,s18:2,s19:4};
+  var state = {s:0, f:0};
+  var STILL = /[?&]still/.test(location.search);
+  if(STILL) document.documentElement.classList.add("still");
+
+  var stage = document.getElementById("stage");
+  function fit(){
+    var k = Math.min(innerWidth/1920, innerHeight/1080);
+    stage.style.transform = "scale("+k+")";
+  }
+  addEventListener("resize", fit); fit();
+
+  /* LED 点阵（200 颗，仅 S3，展示期间持续呼吸闪烁不停止） */
+  var led = document.getElementById("led"), dots = [], ledTimer = null;
+  (function build(){
+    var COLS=25, ROWS=8, x0=160, y0=700, gx=(1920-320)/(COLS-1), gy=180/(ROWS-1);
+    for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
+      var i=document.createElement("i");
+      i.style.left=(x0+c*gx)+"px"; i.style.top=(y0+r*gy)+"px";
+      led.appendChild(i); dots.push(i);
+    }
+  })();
+  function awake(){
+    var s3=document.getElementById("s3");
+    if(s3.classList.contains("awake")) return;
+    s3.classList.add("awake");
+    dots.forEach(function(d,i){
+      if(STILL){ if(i%10<7) d.classList.add("lit"); return; }
+      if(Math.random()<0.7){
+        setTimeout(function(){ d.classList.add("lit"); }, Math.random()*1800);
+      }
+    });
+    if(!STILL){
+      ledTimer=setInterval(function(){
+        for(var k=0;k<14;k++){
+          dots[(Math.random()*dots.length)|0].classList.toggle("lit");
+        }
+      },160);
+    }
+  }
+  function sleep(){
+    document.getElementById("s3").classList.remove("awake");
+    if(ledTimer){ clearInterval(ledTimer); ledTimer=null; }
+    dots.forEach(function(d){ d.classList.remove("lit"); });
+  }
+
+  function render(){
+    SLIDES.forEach(function(id,i){
+      var el=document.getElementById(id);
+      el.classList.toggle("active", i===state.s);
+      el.querySelectorAll(".frag").forEach(function(fr){
+        fr.classList.toggle("on", i===state.s && +fr.dataset.f <= state.f);
+      });
+    });
+    if(SLIDES[state.s]==="s3" && state.f>=1) awake(); else sleep();
+    location.hash = "#"+(state.s+1)+"/"+state.f;
+  }
+
+  var wiping=false;
+  function go(s,f,withWipe){
+    if(wiping) return;
+    var apply=function(){ state.s=s; state.f=f; render(); };
+    if(!withWipe){ apply(); return; }
+    wiping=true;
+    var w=document.getElementById("wipe");
+    w.classList.add("on");
+    setTimeout(function(){
+      apply();
+      setTimeout(function(){ w.classList.remove("on"); wiping=false; },60);
+    },260);
+  }
+
+  function next(){
+    var id=SLIDES[state.s];
+    if(state.f < MAXF[id]){ state.f++; render(); }
+    else if(state.s < SLIDES.length-1){ go(state.s+1, 0, true); }
+  }
+  function prev(){
+    if(state.f > 0){ state.f--; render(); }
+    else if(state.s > 0){ go(state.s-1, MAXF[SLIDES[state.s-1]], true); }
+  }
+  addEventListener("keydown",function(e){
+    if(e.key==="ArrowRight"||e.key===" "||e.key==="Enter"||e.key==="PageDown"){ e.preventDefault(); next(); }
+    else if(e.key==="ArrowLeft"||e.key==="PageUp"){ e.preventDefault(); prev(); }
+    else if(e.key==="f"||e.key==="F"){
+      if(document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen();
+    }
+  });
+  addEventListener("click",function(){ next(); });
+
+  (function fromHash(){
+    var m=location.hash.match(/^#(\d+)\/(\d+)$/);
+    if(m){
+      var s=Math.min(+m[1],SLIDES.length)-1;
+      var f=Math.min(+m[2],MAXF[SLIDES[s]]);
+      state.s=s; state.f=f;
+    } else {
+      state.f=1;
+    }
+    render();
+  })();
+})();
+</script>
+</body>

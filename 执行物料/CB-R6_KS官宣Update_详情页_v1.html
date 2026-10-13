@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYBERBOARD R6 · 第一把学会聆听的键盘 · KS 官宣详情页</title>
+<style>
+  :root{
+    --bg:#07090c; --bg2:#0b0f14; --line:#232a31;
+    --cyan:#7ee7f0; --white:#edf1f3; --dim:#9aa4ac; --faint:#5d666e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--white);
+    font-family:"PingFang SC","Hiragino Sans GB","Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 40px;}
+  .en{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:.06em;}
+  .dim{color:var(--dim);} .faint{color:var(--faint);} .cyan{color:var(--cyan);}
+
+  /* 顶栏 */
+  header{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:28px 40px;border-bottom:1px solid var(--line);
+  }
+  .brand{font-weight:600;font-size:15px;letter-spacing:.14em;}
+  .brand small{display:block;font-weight:400;font-size:10px;color:var(--faint);letter-spacing:.3em;margin-top:2px;}
+  .mono{display:grid;grid-template-columns:repeat(3,7px);gap:4px;}
+  .mono i{width:7px;height:7px;background:var(--dim);display:block;}
+  .mono i:nth-child(5){background:transparent;}
+
+  /* Hero */
+  .hero{padding:120px 40px 100px;text-align:center;position:relative;overflow:hidden;
+    background:radial-gradient(ellipse 70% 45% at 50% 0%, rgba(30,90,100,.28), transparent 70%);}
+  .hero .q{font-size:16px;color:var(--dim);}
+  .hero .q-en{font-size:12px;color:var(--faint);margin-top:6px;font-style:italic;}
+  .hero .divider{width:56px;height:1px;background:var(--line);margin:44px auto;}
+  .hero .pivot{font-size:22px;color:#b9c1c7;font-weight:500;}
+  .hero .pivot-en{font-size:12px;color:var(--faint);margin-top:10px;font-style:italic;}
+  .hero h1{font-size:44px;letter-spacing:.28em;margin-top:72px;font-weight:600;}
+  .hero h2{font-size:56px;color:var(--cyan);font-weight:600;margin-top:14px;letter-spacing:.04em;}
+  .hero .sol-en{font-size:14px;color:var(--dim);margin-top:16px;font-style:italic;}
+  .cta{display:inline-block;margin-top:56px;padding:16px 56px;border:1px solid var(--cyan);
+    color:var(--cyan);font-size:15px;letter-spacing:.2em;text-decoration:none;}
+  .cta-sub{font-size:11px;color:var(--faint);margin-top:14px;letter-spacing:.1em;}
+
+  /* 通用区块 */
+  section{padding:96px 0;border-top:1px solid var(--line);}
+  .sec-tag{font-size:12px;letter-spacing:.4em;color:var(--cyan);margin-bottom:18px;}
+  .sec-title{font-size:34px;font-weight:600;line-height:1.4;}
+  .sec-body{margin-top:28px;font-size:16px;color:var(--dim);max-width:680px;}
+  .sec-body p{margin-bottom:14px;}
+  .sec-body strong{color:var(--white);font-weight:600;}
+
+  /* 图占位 */
+  .ph{
+    margin:48px 0 8px;border:1px dashed #33414a;background:var(--bg2);
+    height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    color:var(--faint);font-size:13px;letter-spacing:.15em;text-align:center;gap:8px;
+  }
+  .ph .tag{border:1px solid #33414a;padding:4px 14px;font-size:11px;}
+  .ph small{font-size:11px;color:#434c53;letter-spacing:.05em;}
+
+  /* 金句 */
+  .quote{
+    margin:56px auto 0;max-width:720px;text-align:center;
+    font-size:24px;line-height:2;color:#cfd6db;font-weight:500;
+  }
+  .quote em{color:var(--cyan);font-style:normal;}
+
+  /* 编年史 */
+  .chrono{display:flex;justify-content:space-between;margin-top:56px;position:relative;}
+  .chrono::before{content:"";position:absolute;top:7px;left:0;right:0;height:1px;background:var(--line);}
+  .chrono .node{width:22%;position:relative;padding-top:32px;}
+  .chrono .node::before{content:"";position:absolute;top:0;left:0;width:15px;height:15px;
+    border-radius:50%;background:var(--bg);border:2px solid var(--faint);}
+  .chrono .node.now::before{border-color:var(--cyan);background:var(--cyan);
+    box-shadow:0 0 18px rgba(126,231,240,.55);}
+  .chrono .year{font-size:22px;font-weight:600;}
+  .chrono .node.now .year{color:var(--cyan);}
+  .chrono .what{font-size:13px;color:var(--dim);margin-top:8px;line-height:1.6;}
+
+  /* 三卖点 */
+  .tri{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;}
+  .card{border:1px solid var(--line);background:var(--bg2);padding:0 0 28px;}
+  .card .ph{height:180px;margin:0;border:none;border-bottom:1px dashed #33414a;}
+  .card h3{font-size:19px;font-weight:600;padding:24px 24px 6px;color:var(--white);}
+  .card p{font-size:13px;color:var(--dim);padding:0 24px;line-height:1.8;}
+  .card .no{font-size:11px;color:var(--cyan);letter-spacing:.3em;padding:20px 24px 0;}
+
+  /* 三层结构 */
+  .layers{margin-top:56px;}
+  .layer{display:flex;gap:32px;padding:36px 0;border-top:1px solid var(--line);align-items:baseline;}
+  .layer:last-child{border-bottom:1px solid var(--line);}
+  .layer .n{font-size:13px;color:var(--cyan);letter-spacing:.3em;min-width:90px;}
+  .layer h3{font-size:21px;font-weight:600;min-width:280px;}
+  .layer p{font-size:14px;color:var(--dim);flex:1;}
+
+  /* 退休三件套 */
+  .retire{display:flex;gap:24px;justify-content:center;margin-top:48px;}
+  .retire .item{
+    border:1px solid var(--line);padding:32px 40px;text-align:center;color:var(--faint);
+    font-size:15px;position:relative;background:var(--bg2);
+  }
+  .retire .item::after{content:"已退休";position:absolute;top:-11px;left:50%;transform:translateX(-50%);
+    background:var(--bg);color:var(--cyan);font-size:11px;padding:2px 12px;letter-spacing:.2em;border:1px solid var(--line);}
+  .retire .arrow{align-self:center;color:var(--faint);font-size:20px;}
+  .retire .r6{border-color:var(--cyan);color:var(--white);}
+  .retire .r6::after{content:"CYBERBOARD R6";color:var(--cyan);}
+
+  /* 坦诚 */
+  .honest{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;}
+  .honest .h{border:1px solid var(--line);padding:28px;background:var(--bg2);}
+  .honest .h h4{font-size:15px;color:var(--cyan);font-weight:600;margin-bottom:10px;}
+  .honest .h p{font-size:13px;color:var(--dim);}
+
+  /* FAQ */
+  .faq{margin-top:56px;}
+  .faq .qa{padding:24px 0;border-top:1px solid var(--line);}
+  .faq .qa:last-child{border-bottom:1px solid var(--line);}
+  .faq .qq{font-size:16px;font-weight:600;}
+  .faq .qa .aa{font-size:14px;color:var(--dim);margin-top:8px;}
+  .faq .qa .aa em{color:var(--cyan);font-style:normal;}
+
+  /* 规格 */
+  .specs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+    border:1px solid var(--line);margin-top:56px;}
+  .specs .s{background:var(--bg);padding:22px 24px;}
+  .specs .s b{display:block;font-size:14px;font-weight:600;}
+  .specs .s span{font-size:12px;color:var(--faint);}
+
+  footer{padding:80px 40px 64px;text-align:center;border-top:1px solid var(--line);}
+  footer .big{font-size:28px;font-weight:600;letter-spacing:.06em;}
+  footer .foot-cta{margin-top:32px;}
+  footer .note{margin-top:40px;font-size:11px;color:#434c53;line-height:2;max-width:640px;margin-left:auto;margin-right:auto;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand en">CYBERBOARD R6<small>INVISIBLE AI IO</small></div>
+  <div class="mono"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</header>
+
+<!-- Hero：Reveal 三句 -->
+<div class="hero">
+  <div class="wrap">
+    <p class="q">AI 已经可以聆听你。但为什么，今天的键盘还不行？</p>
+    <p class="q-en en">AI is listening to you. So why isn't your keyboard?</p>
+    <div class="divider"></div>
+    <p class="pivot">因为到今天为止，还没有一把键盘，<br>为 AI 时代而生。</p>
+    <p class="pivot-en en">Because no keyboard has ever been built for the AI era.</p>
+    <h1 class="en">CYBERBOARD R6</h1>
+    <h2>第一把学会聆听的键盘</h2>
+    <p class="sol-en en">The first keyboard that listens.</p>
+    <a class="cta en" href="#">BACK THIS PROJECT</a>
+    <p class="cta-sub">Kickstarter 项目已上线 · 早鸟档限量开放</p>
+  </div>
+</div>
+
+<!-- 01 Problem -->
+<section>
+  <div class="wrap">
+    <p class="sec-tag en">01 · THE PROBLEM</p>
+    <h3 class="sec-title">1873 年的键盘，<br>怎么和 2026 年的 AI 对话？</h3>
+    <div class="sec-body">
+      <p>我们仍在用 1873 年的打字机配列、1964 年的鼠标，去和 2026 年的智能对话。AI 时代的原生交互已经诞生——是<strong>对话</strong>。</p>
+      <p>你的想法以说话的速度奔涌，却被手指逐一截流。一段十分钟的完整思考，被压缩成二十分钟的敲击；桌面上的麦克风要吃下机械键盘的敲击声，耳机要一直戴在头上——设备越堆越多，只是为了和 AI 好好说一句话。</p>
+    </div>
+    <div class="quote">
+      你以为你在思考，其实你在搬运——<br>把想法一个字一个字搬进电脑。<br>
+      <em>这是这个时代最隐蔽的体力劳动。</em>
+    </div>
+  </div>
+</section>
+
+<!-- 02 Solution -->
+<section>
+  <div class="wrap">
+    <p class="sec-tag en">02 · THE ANSWER</p>
+    <h3 class="sec-title">你的手本来就在键盘上，<br>所以，让键盘听见你。</h3>
+    <div class="sec-body">
+      <p>CYBERBOARD R6 的回答不是再加一个设备，而是让已有的设备进化。<strong>打字设备、桌面身份、AI IO——第一次，在一把键盘上三合一。</strong></p>
+      <p>你说的，它听见。你想的，它办成。</p>
+    </div>
+    <div class="ph"><span class="tag">实拍占位 · HERO 主图</span><span>R6 整机桌面实拍（工程机零渲染）· 建议 3:2 横构图</span><small>KS 合规：实拍照片，禁止渲染图冒充实拍</small></div>
+  </div>
+</section>
+
+<!-- 编年史 -->
+<section>
+  <div class="wrap">
+    <p class="sec-tag en">CHRONICLE · 1873 → 2026</p>
+    <h3 class="sec-title">键盘的第三次觉醒</h3>
+    <div class="chrono">
+      <div class="node"><div class="year en">1873</div><div class="what">打字机配列确立<br>QWERTY 沿用至今</div></div>
+      <div class="node"><div class="year en">1964</div><div class="what">鼠标发明<br>图形界面的输入起点</div></div>
+      <div class="node"><div class="year en">2007</div><div class="what">移动时代<br>触屏成为原生交互</div></div>
+      <div class="node now"><div class="year en">2026</div><div class="what">对话成为 AI 原生交互<br>键盘第一次学会聆听</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 三卖点 -->
+<section>
+  <div class="wrap">
+    <p class="sec-tag en">03 · THREE THINGS IT DOES</p>
+    <h3 class="sec-title">言出，法随。</h3>
+    <div class="tri">
+      <div class="card">
+        <div class="ph"><span class="tag">实拍占位</span><span>语音输入演示截图</span></div>
+        <p class="no en">SP1</p>
+        <h3>边说边看，说完即写入</h3>
+        <p>按住 AI 键说话，文字实时出现在输入框里。十分钟的完整思考，不再被压缩成二十分钟的敲击。</p>
+      </div>
+      <div class="card">
+        <div class="ph"><span class="tag">实拍占位</span><span>意图执行链路演示</span></div>
+        <p class="no en">SP2</p>
+        <h3>按住说话，松开执行</h3>
+        <p>App 识别意图 → R6 发出真实 HID 指令 → 电脑执行。对接任意 Agent，软件公司做不了的软硬一体闭环。</p>
+      </div>
+      <div class="card">
+        <div class="ph"><span class="tag">实拍占位</span><span>阵列麦降噪实测</span></div>
+        <p class="no en">SP3</p>
+        <h3>边打字，边被听见</h3>
+        <p>AI 阵列麦 + 音频 DSP，为机械键盘的敲击环境而生——在敲击声里，只取你的声音。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 三层产品结构 -->
+<section>
+  <div class="wrap">
+    <p class="sec-tag en">04 · WHAT IT IS</p>
+    <h3 class="sec-title">一把键盘的三层结构</h3>
+    <div class="layers">
+      <div class="layer"><span class="n en">LAYER 1</span><h3>完全体 CYBERBOARD 旗舰</h3><p>200 颗 LED 矩阵、6063 CNC 铝合金、Leaf Spring 结构、冰银轴 Pro V3——先立住键盘本体。</p></div>
+      <div class="layer"><span class="n en">LAYER 2</span><h3>桌面级收音系统</h3><p>AI 阵列麦 + 音频 DSP，为机械键盘的敲击环境而生。</p></div>
+      <div class="layer"><span class="n en">LAYER 3</span><h3>意图执行闭环</h3><p>按住说话 → App 识别意图 → R6 发出真实 HID 指令 → 电脑执行。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 桌面减法 -->
+<section>
+  <div class="wrap" style="text-align:center;">
+    <p class="sec-tag en">05 · LESS IS MORE</p>
+    <h3 class="sec-title">桌面上的最后一件设备，<br>因为它其实是一次减法。</h3>
+    <div class="sec-body" style="margin-left:auto;margin-right:auto;text-align:center;">
+      <p>你为一张干净的桌面做过那么多减法：无线化、藏线、精简设备——但麦克风、音箱、耳机，始终是多出来的那几件。</p>
+    </div>
+    <div class="retire">
+      <div class="item">独立麦克风</div>
+      <div class="item">桌面音箱</div>
+      <div class="item">头戴耳机</div>
+      <div class="arrow">→</div>
+      <div class="item r6 cyan">三合一，它们退休了</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 坦诚三件套 -->
+<section>
+  <div class="wrap">
+    <p class="sec-tag en">06 · FULL DISCLOSURE</p>
+    <h3 class="sec-title">我们主动说清楚的三件事</h3>
+    <div class="honest">
+      <div class="h"><h4>试产复测计划公开</h4><p>写入速度、识别成功率、蓝牙稳定性——试产复测计划全部公开，数据达标后再对外引用。</p></div>
+      <div class="h"><h4>订阅制显著披露</h4><p>AI 能力涉及订阅制，我们在页面显著位置披露，创始档含长期权益。</p></div>
+      <div class="h"><h4>能力边界明示</h4><p>它不是通用 Agent；HID 仅支持键盘指令，不支持鼠标操作。只在你说"听"的时候倾听。</p></div>
+    </div>
+
+    <div class="faq">
+      <div class="qa"><p class="qq">它一直在听我说话吗？</p><p class="aa">不会。收音只绑定在<em>双击 / 按住</em> AI 键的主动动作上——你按住，它倾听；你松开，它执行。</p></div>
+      <div class="qa"><p class="qq">语音输入有多快？</p><p class="aa">说完即写入。具体数据正在试产复测中，复测完成后我们会在 Update 里公布实测结果。</p></div>
+      <div class="qa"><p class="qq">它能操作我的鼠标吗？</p><p class="aa">不能。HID 闭环仅支持键盘指令。边界之内，言出法随。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 规格 -->
+<section>
+  <div class="wrap">
+    <p class="sec-tag en">SPECS</p>
+    <h3 class="sec-title">规格速览</h3>
+    <div class="specs">
+      <div class="s"><b>200 颗 LED 矩阵</b><span>桌面身份的像素语言</span></div>
+      <div class="s"><b>6063 CNC 铝合金</b><span>一体化机身</span></div>
+      <div class="s"><b>Leaf Spring 结构</b><span>旗舰手感</span></div>
+      <div class="s"><b>冰银轴 Pro V3</b><span>打字音固定环节同款</span></div>
+      <div class="s"><b>AI 阵列麦 + 音频 DSP</b><span>为敲击环境而生</span></div>
+      <div class="s"><b>真实 HID 指令闭环</b><span>对接任意 Agent</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="big">言出，法随。<span class="dim">——你说的，就是它办的。</span></p>
+  <p class="sol-en en faint" style="margin-top:10px;font-style:italic;">Say it. So it is.</p>
+  <div class="foot-cta"><a class="cta en" href="#">BACK THIS PROJECT</a></div>
+  <p class="note">
+    本页为 KS 官宣 Update 详情页 v1 排版稿 · 文案依据《CB-R6 产品故事（团队定稿版）》与红线自查表：
+    使用「AM 第一把为 AI 时代造的键盘」限定口径，不做未核实的「全球首款」宣称；「说完即写入」数据待试产复测；
+    全部图片位为实拍占位，禁止使用渲染图冒充实拍（KS 合规）。
+  </p>
+  <p class="note en" style="margin-top:12px;letter-spacing:.3em;">ANGRY MIAO · CYBERBOARD R6 · INVISIBLE AI IO</p>
+</footer>
+
+</body>
+</html>

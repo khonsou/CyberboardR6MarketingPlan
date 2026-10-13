@@ -56,6 +56,8 @@ Angry Miao CYBERBOARD R6（CB R6）新品发布的完整营销作战文档：产
 │   ├── CB-R6-发布故事线.md
 │   ├── CB-R6-30天节奏时间线.md  # 含物料制作包 + 编号
 │   └── CB-R6-项目上下文.md      # 决策记录 + 悬而未决项
+├── 执行物料/                   # 已产出物料成品（KV / Update 页面 / TVC 脚本 / 发布会脚本）
+│   └── keynote/                # 发布会 H5 全场 slider（index.html + 设计系统 frame.md + 关键屏静帧 previews/）
 ├── 品牌资料/                   # 输入源文档（品牌简介 / TA / VI 规范 / 方法论 / AM 鼠标 KS 模板）
 └── am-marketing-planner/       # AM 营销策划方法论 skill（可复用于后续新品）
     ├── SKILL.md
